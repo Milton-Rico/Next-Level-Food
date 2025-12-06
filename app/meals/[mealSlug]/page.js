@@ -1,27 +1,26 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { use } from 'react';
 import { getMeal } from '@/lib/meals';
 import classes from './page.module.css';
 
-export async function generateMetadata({ params }) {
+// export async function generateMetadata({ params }) {
+//   const mealParams = await params;
+//   console.log(mealParams);
+//   const meal = getMeal(mealParams.mealSlug);
+//   if (!meal) {
+//     notFound();
+//   }
+
+//   return {
+//     title: meal.title,
+//     description: meal.summary,
+//   };
+// }
+
+export default async function MealsDetailsPage({ params }) {
   const mealParams = await params;
   console.log(mealParams);
-  const meal = getMeal(mealParams.mealSlug);
-  if (!meal) {
-    notFound();
-  }
-
-  return {
-    title: meal.title,
-    description: meal.summary,
-  };
-}
-
-export default function MealsDetailsPage({ params }) {
-  const mealParams = use(params);
-  console.log(mealParams);
-  const meal = getMeal(mealParams.mealSlug);
+  const meal = await getMeal(mealParams.mealSlug);
 
   if (!meal) {
     notFound();
