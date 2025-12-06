@@ -19,7 +19,7 @@ import classes from './page.module.css';
 
 export default async function MealsDetailsPage({ params }) {
   const mealParams = await params;
-  console.log(mealParams);
+  console.log(mealParams.mealSlug);
   const meal = await getMeal(mealParams.mealSlug);
 
   if (!meal) {

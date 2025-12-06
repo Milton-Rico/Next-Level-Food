@@ -1,5 +1,4 @@
-const sql = require('better-sqlite3');
-const db = sql('meals.db');
+import db from './lib/db';
 
 const dummyMeals = [
   {
@@ -196,6 +195,9 @@ async function initData() {
   for (const meal of dummyMeals) {
     stmt.run(meal);
   }
+  console.log('Database seeded with dummy data!');
+  // Add this: Close the connection manually after the seed script finishes its work
+  db.close();
 }
 
 initData();
